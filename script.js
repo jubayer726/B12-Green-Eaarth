@@ -4,11 +4,13 @@ const cardContainer = document.getElementById("card-container");
 const cartContainer = document.getElementById("cart-container")
 let carts = [];
 
+/// Category Plant ///
 const loadCategory = () => {
     fetch("https://openapi.programming-hero.com/api/categories")
     .then((res) => res.json())
     .then(data => {
         const categories = data.categories
+        console.log(categories);
         showCategory(categories)
     })
     .catch(err => {
@@ -51,13 +53,25 @@ const loadCardByCategoriy = (categoryID) => {
     });
 }
 
+const loadAllCards= (categoryID) => {
+    fetch(`https://openapi.programming-hero.com/api/plants`)
+    .then((res) => res.json())
+    .then(data => {
+        
+        showCardByCategory(data.plants)
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
         //Card Section  ////
 const showCardByCategory = (card) => {
     cardContainer.innerHTML = "";
     card.forEach(cards => {
         cardContainer.innerHTML += `
                 <div class="p-3 rounded-2xl bg-white shadow-sm">
-                    <img class="rounded-xl" src="${cards.image}" alt="photo">
+                    <img class="w-full h-1/2 rounded-xl" src="${cards.image}" alt="photo">
                         <div id ="${cards.id}">
                         <h2 class="text-2xl font-semibold">${cards.name}</h2>
                         </div>
@@ -117,4 +131,4 @@ const cartDeleteBtn = (cartID) => {
 }
 
 loadCategory()
-loadCardByCategoriy('1')
+loadAllCards()
