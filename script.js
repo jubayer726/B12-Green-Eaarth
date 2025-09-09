@@ -1,7 +1,11 @@
 
 const categoryContainer = document.getElementById("category-container");
 const cardContainer = document.getElementById("card-container");
+const cardContainer2 = document.getElementById("card-container2");
 const cartContainer = document.getElementById("cart-container")
+const plantTotalPrice = document.getElementById("total-price");
+const dodalDetails = document.getElementById("modal-detailes");
+const modalContainer = document.getElementById("modal-container");
 let carts = [];
 
 /// Category Plant ///
@@ -10,7 +14,7 @@ const loadCategory = () => {
     .then((res) => res.json())
     .then(data => {
         const categories = data.categories
-        console.log(categories);
+        
         showCategory(categories)
     })
     .catch(err => {
@@ -29,14 +33,16 @@ const showCategory = (categories) =>{
     categoryContainer.addEventListener("click", (e) => {
         
         const allDiv = document.querySelectorAll("div")
-
+        
         allDiv.forEach(div => {
             div.classList.remove('bg-green-500')
         })
-        if(e.target.localName == "div"){
+        if(e.target.localName === "div"){
+            showSpinner()
             // console.log(e.target.id);
             e.target.classList.add("bg-green-500");
             loadCardByCategoriy(e.target.id)
+            
         }
     })
 }
@@ -71,11 +77,11 @@ const showCardByCategory = (card) => {
     card.forEach(cards => {
         cardContainer.innerHTML += `
                 <div class="p-3 rounded-2xl bg-white shadow-sm">
-                    <img class="w-full h-1/2 rounded-xl" src="${cards.image}" alt="photo">
+                    <img class="w-full h-[300px] rounded-xl" src="${cards.image}" alt="photo">
                         <div id ="${cards.id}">
-                        <h2 class="text-2xl font-semibold">${cards.name}</h2>
+                        <h2 id="card-title" class="text-2xl font-semibold">${cards.name}</h2>
                         </div>
-                        <p class="text-gray-500 py-2">${cards.description}</p>
+                        <p class="text-gray-500 py-2 line-clamp-3">${cards.description}</p>
                         <div class="flex justify-between py-4">
                             <h3 class="bg-green-200 text-green-700 px-3 rounded-full">${cards.category}</h3>
                             <h3 class="">৳<span>${cards.price}</span></h3>
@@ -92,6 +98,11 @@ const showCardByCategory = (card) => {
 cardContainer.addEventListener("click", (e) => {
     if(e.target.innerText === "Add to Cart"){
         handleCarts(e)
+        const title = e.target.parentNode.children[1].innerText
+        alert(`${title} tree has been added to the Cart.` )
+    }
+    if(e.target.innerText === `${title}`){
+        console.log(title);
     }
 })
 const handleCarts = (e) => {
@@ -104,20 +115,28 @@ const handleCarts = (e) => {
         price:price
        });
        showCarts(carts)
+       
+       //// Tree Price ///
+      const Totalprice = parseInt(plantTotalPrice.innerText);
+      const treePrice = parseInt(price)
+       let cartsPrice = Totalprice + treePrice;
+       const grandTotal = plantTotalPrice.innerText = cartsPrice;
+
 }
 const showCarts = (carts) => {
-    console.log(carts);
     cartContainer.innerHTML = "";
     carts.forEach(cart => {
         cartContainer.innerHTML += `
             <div class="bg-green-50 rounded-lg m-3 p-2 space-y-2">
                     <h3 class="">${cart.title}</h3>
                     <div class="flex justify-between items-center">
-                        <p class="text-gray-500 text-sm">৳<span>${cart.price}</span> x <span>1</span></p>
-                        <button onclick="cartDeleteBtn('${cart.id}')">x</button>
+                        <p class="text-gray-500 text-sm">৳<span id="plant-price">${cart.price}</span> x <span>1</span></p>
+                        <button onclick="cartDeleteBtn('${cart.id}')" class="text-red-700">X</button>
                     </div>
+
             </div>
         `;
+
     }) 
 }
 
@@ -129,6 +148,25 @@ const cartDeleteBtn = (cartID) => {
    carts = filterCarts
    showCarts(carts)
 }
+
+/// Spinner///
+const showSpinner = () =>{
+    cardContainer.innerHTML += `
+        <div>
+            <span class="loading loading-bars loading-xs"></span>
+            <span class="loading loading-bars loading-sm"></span>
+            <span class="loading loading-bars loading-md"></span>
+            <span class="loading loading-bars loading-lg"></span>
+            <span class="loading loading-bars loading-xl"></span>
+        </div>
+    `;
+}
+
+  /// Modal ///
+// const showModal = document.getElementById("card-title").addEventListener("click", (e) =>{
+
+// })
+
 
 loadCategory()
 loadAllCards()

@@ -62,7 +62,12 @@
             <!-- Card Section -->
             <div class="col-span-9">
                 <div id="card-container" class="grid grid-cols-3 gap-4">                   
-
+                    <div>
+                        <span class="loading loading-bars loading-xs"></span>
+                        <span class="loading loading-bars loading-sm"></span>
+                        <span class="loading loading-bars loading-md"></span>
+                        <span class="loading loading-bars loading-lg"></span>
+                    </div>
                 </div>
             </div>
 
@@ -72,9 +77,36 @@
                 <div id="cart-container">
                     
                 </div>
+                
+                <div class="flex justify-between items-center font-semibold">
+                    <h1>Total</h1>
+                    <h1>৳ <span id="total-price">0</span></h1>
+                </div>
             </div>
           </div>
       </main>
+
+      <!-- Modal -->
+       <!-- Open the modal using ID.showModal() method -->
+        <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+        <dialog id="modal-detailes" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+                <div id="modal-container">
+                    <h1>Bayan Tree</h1>
+                    <img class="w-1/2" src="./photos/about.png" alt="">
+                    <h2>Categoy:Shade Tree</h2>
+                    <p>Price</p>
+                    <p>Description:</p>
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                     <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
+
 
       <!-- Campaign Section -->
       <section class="bg-green-50">
