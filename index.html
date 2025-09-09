@@ -13,7 +13,7 @@
 <body>
     <!-- Navbar -->
     <nav class="nav-bar bg-[#15803D]">
-        <div class="nav-container flex justify-around items-center gap-4 py-4">
+        <div class="nav-container lg:flex justify-around items-center gap-4 py-4 mx-3">
            <div>
             <h2 class="text-3xl text-white font-bold">Green Earth</h2>
            </div>
@@ -37,7 +37,7 @@
             <div><img src="./photos/hero-leaf1.png" alt=""></div>
 
             <div class="text-center space-y-2">
-                <h1 class="text-3xl font-bold">Plant a Tree, Grow a Future</h1>
+                <h1 class="lg:text-3xl font-bold">Plant a Tree, Grow a Future</h1>
                 <p class="text-gray-500 text-sm">Join our mission to plant 1 million trees and make the Earth greener for future generations.
                 </p>
 
@@ -53,15 +53,15 @@
         <div class="text-2xl font-semibold"><h1 class="text-center">Choose Your Trees</h1></div>
         <div class="w-11/12 mx-auto py-3 grid grid-cols-14 gap-8">
             <!-- Category Section -->
-            <div id="category-container" class="col-span-3 p-5">
+            <div id="category-container" class="col-span-3 lg:p-5 p-1">
                 <div>
                     <h1 class="text-xl font-semibold">Categories</h1>
                 </div>
             </div>
 
             <!-- Card Section -->
-            <div class="col-span-9">
-                <div id="card-container" class="grid grid-cols-3 gap-4">                   
+            <div class="col-span-7 lg:col-span-9">
+                <div id="card-container" class="grid lg:grid-cols-3 gap-4">                   
                     <div>
                         <span class="loading loading-bars loading-xs"></span>
                         <span class="loading loading-bars loading-sm"></span>
@@ -72,13 +72,13 @@
             </div>
 
             <!-- Your Cart -->
-            <div class="col-span-2 bg-white rounded-xl">
+            <div class="col-span-4 lg:col-span-2 bg-white rounded-xl">
                 <h1 class="text-xl font-semibold p-5">Your Cart</h1>
                 <div id="cart-container">
                     
                 </div>
                 
-                <div class="flex justify-between items-center font-semibold">
+                <div class="flex justify-between items-center font-semibold p-2">
                     <h1>Total</h1>
                     <h1>৳ <span id="total-price">0</span></h1>
                 </div>
@@ -113,14 +113,14 @@
           <div class="text-2xl font-semibold">
               <h1 class="text-center">About the Campaign</h1>
           </div>
-        <div class="w-11/12 mx-auto py-3 grid grid-cols-14 gap-8">
+        <div class="lg:w-11/12 mx-auto py-3 grid lg:grid-cols-14 lg:gap-8">
             <div class="col-span-3"></div>
-            <div class="col-span-9 flex justify-between items-center gap-5 pt-5 pb-12">
-                <img class="w-full" src="./photos/about.png" alt="">
+            <div class="col-span-9 lg:flex justify-between items-center gap-5 pt-5 pb-12">
+                <img class="w-1/2 lg:w-full mx-auto" src="./photos/about.png" alt="">
                 <div>
-                    <p class="text-gray-500">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we've planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.
+                    <p class="text-gray-500 p-5">Green Earth is a global tree plantation initiative dedicated to fighting climate change. Since our start, we've planted over 500,000 trees worldwide. By joining our campaign, you help restore forests, create habitats for wildlife, and combat global warming.
                     </p>
-                    <div class="text-gray-500 py-5">
+                    <div class="text-gray-500 p-5 lg:py-5">
                         <li>Restoration of natural habitats</li>
                         <li>Improvement of air quality</li>
                         <li>Support for local communities</li>
@@ -154,7 +154,7 @@
         <!-- Plant a Tree Today Section -->
          <section class="bg-green-700 pt-10 pb-20">
             <h1 class="text-2xl font-bold text-white text-center py-5">Plant a Tree Today</h1>
-            <div class="bg-green-600 w-4/12 mx-auto rounded-2xl">
+            <div class="bg-green-600 w-8/12 lg:w-4/12 mx-auto rounded-2xl">
                 <div class="mx-auto">
                     <div class="p-10">
                         <form action="">
@@ -162,9 +162,9 @@
                             <input class="bg-white p-3 rounded-xl border-none w-full" type="text" placeholder="Your Email Adderss"><br><br>
                             <select class="select join-item w-full rounded-xl">
                                 <option disabled selected>Number of Trees</option>
-                                <option>Sci-fi</option>
-                                <option>Drama</option>
-                                <option>Action</option>
+                                <option>1 Tree $5</option>
+                                <option>5 Tree $25</option>
+                                <option>10 Tree $50</option>
                             </select>
                         </form><br>
                         <button class="btn w-full rounded-2xl bg-yellow-500 text-green-500 border-none">Donate Now</button>

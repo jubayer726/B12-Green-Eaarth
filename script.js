@@ -77,11 +77,11 @@ const showCardByCategory = (card) => {
     card.forEach(cards => {
         cardContainer.innerHTML += `
                 <div class="p-3 rounded-2xl bg-white shadow-sm">
-                    <img class="w-full h-[300px] rounded-xl" src="${cards.image}" alt="photo">
+                    <img class="w-full h-[175px] lg:h-[300px] rounded-xl" src="${cards.image}" alt="photo">
                         <div id ="${cards.id}">
                         <h2 id="card-title" class="text-2xl font-semibold">${cards.name}</h2>
                         </div>
-                        <p class="text-gray-500 py-2 line-clamp-3">${cards.description}</p>
+                        <p class="text-gray-500 py-2 line-clamp-2 lg:line-clamp-3 ">${cards.description}</p>
                         <div class="flex justify-between py-4">
                             <h3 class="bg-green-200 text-green-700 px-3 rounded-full">${cards.category}</h3>
                             <h3 class="">৳<span>${cards.price}</span></h3>
@@ -163,9 +163,7 @@ const showSpinner = () =>{
 }
 
   /// Modal ///
-// const showModal = document.getElementById("card-title").addEventListener("click", (e) =>{
 
-// })
 
 
 loadCategory()
