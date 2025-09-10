@@ -11,32 +11,43 @@
 
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="nav-bar bg-[#15803D]">
-        <div class="nav-container lg:flex justify-around items-center gap-4 py-4 mx-3">
-           <div>
-            <h2 class="text-3xl text-white font-bold">Green Earth</h2>
-           </div>
-           <div>
-            <ul class="flex justify-around items-center gap-4 text-white font-semibold text-l">
-                <li><a href="">About</a></li>
-                <li><a href="">Gallery</a></li>
-                <li><a href="">Plant a Tree</a></li>
+    <!-- NavBar-1 -->
+    <div class="bg-[#15803D] shadow-sm">
+        <div class="navbar w-10/12 mx-auto">
+            <div class="navbar-start">
+            <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+            </div>
+            <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                <li><a>About</a></li>
+                <li><a>Gallery</a></li>
+                <li><a>Plant a Tree</a></li>
             </ul>
-           </div>
-           <div>
-            <button class="btn bg-yellow-400 rounded-full text-green-600 font-semibold border-none">Plant a Tree</button>
-           </div>
-
+            </div>
+            <a class="text-3xl text-white font-bold">Green Earth</a>
         </div>
-    </nav>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1 text-white font-semibold text-l">
+                <li><a>About</a></li>
+                <li><a>Gallery</a></li>
+                <li><a>Plant a Tree</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a class="btn bg-yellow-400 rounded-full text-green-600 font-semibold border-none">Plant a Tree</a>
+        </div>
+      </div>
+    </div>
 
     <!-- Banner Section -->
-     <section class="bg-[#CFF0DC]">
-        <div class="banner-container flex justify-around items-center gap-8">
+     <section >
+        <div class="banner-container flex justify-around items-center gap-2 lg:gap-8">
             <div><img src="./photos/hero-leaf1.png" alt=""></div>
-
-            <div class="text-center space-y-2">
+            
+            <div class="text-center space-y-2 py-24">
                 <h1 class="lg:text-3xl font-bold">Plant a Tree, Grow a Future</h1>
                 <p class="text-gray-500 text-sm">Join our mission to plant 1 million trees and make the Earth greener for future generations.
                 </p>
@@ -51,11 +62,11 @@
      <!-- main section -->
       <main class="bg-green-50 py-20">
         <div class="text-2xl font-semibold"><h1 class="text-center">Choose Your Trees</h1></div>
-        <div class="w-11/12 mx-auto py-3 grid grid-cols-14 gap-8">
+        <div class="w-11/12 mx-auto py-3 grid grid-cols-14 gap-3 lg:gap-8">
             <!-- Category Section -->
             <div id="category-container" class="col-span-3 lg:p-5 p-1">
                 <div>
-                    <h1 class="text-xl font-semibold">Categories</h1>
+                    <h1 class="text-l lg:text-xl font-semibold">Categories</h1>
                 </div>
             </div>
 
@@ -73,7 +84,7 @@
 
             <!-- Your Cart -->
             <div class="col-span-4 lg:col-span-2 bg-white rounded-xl">
-                <h1 class="text-xl font-semibold p-5">Your Cart</h1>
+                <h1 class="text-l lg:text-xl font-semibold p-5">Your Cart</h1>
                 <div id="cart-container">
                     
                 </div>
