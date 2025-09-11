@@ -4,8 +4,8 @@ const cardContainer = document.getElementById("card-container");
 const cardContainer2 = document.getElementById("card-container2");
 const cartContainer = document.getElementById("cart-container")
 const plantTotalPrice = document.getElementById("total-price");
-const dodalDetails = document.getElementById("modal-detailes");
 const modalContainer = document.getElementById("modal-container");
+
 let carts = [];
 
 /// Category Plant ///
@@ -38,8 +38,7 @@ const showCategory = (categories) =>{
             div.classList.remove('bg-green-500')
         })
         if(e.target.localName === "div"){
-            showSpinner()
-            // console.log(e.target.id);
+            // showSpinner()
             e.target.classList.add("bg-green-500");
             loadCardByCategoriy(e.target.id)
             
@@ -48,6 +47,7 @@ const showCategory = (categories) =>{
 }
 
 const loadCardByCategoriy = (categoryID) => {
+    manageSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/category/${categoryID}`)
     .then((res) => res.json())
     .then(data => {
@@ -60,6 +60,7 @@ const loadCardByCategoriy = (categoryID) => {
 }
 
 const loadAllCards= (categoryID) => {
+    manageSpinner(true);
     fetch(`https://openapi.programming-hero.com/api/plants`)
     .then((res) => res.json())
     .then(data => {
@@ -79,7 +80,7 @@ const showCardByCategory = (card) => {
                 <div class="p-3 rounded-2xl bg-white shadow-sm">
                     <img class="w-full h-[175px] lg:h-[300px] rounded-xl" src="${cards.image}" alt="photo">
                         <div id ="${cards.id}">
-                        <h2 id="card-title" class="text-2xl font-semibold">${cards.name}</h2>
+                        <h2 onclick="loadTreeDetails(${cards.id})" class="text-2xl font-semibold">${cards.name}</h2>
                         </div>
                         <p class="text-gray-500 py-2 line-clamp-2 lg:line-clamp-3 ">${cards.description}</p>
                         <div class="flex justify-between py-4">
@@ -90,21 +91,52 @@ const showCardByCategory = (card) => {
                 </div>
         `;
     })
-    
+    manageSpinner(false)
 }
 
+//// Spinner ////
+const manageSpinner = (status) =>{
+    if(status == true){
+        document.getElementById("spinner").classList.remove("hidden")
+        document.getElementById("card-container").classList.add("hidden")
+    }
+    else{
+        document.getElementById("card-container").classList.remove("hidden")
+        document.getElementById("spinner").classList.add("hidden")
+    }
+}
+
+//// Modal /// 
+const loadTreeDetails =async(id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`;
+    const res = await fetch(url);
+    const treeDetails = await res.json();
+    displayTreeDetails(treeDetails.plants);
+}
+
+const displayTreeDetails = (cards) => {
+    modalContainer.innerHTML = "";
+    modalContainer.innerHTML += `
+        <h1 class="font-bold text-2xl">${cards.name}</h1>
+        <div class="py-3"><img class="w-full h-[175px] lg:h-[300px] rounded-xl" src="${cards.image}" alt=""></div>
+        <h2 class="py-3"><span class="font-semibold">Category: </span>${cards.category}</h2>
+        <h3><span class="font-semibold">Price: $</span>${cards.price}</h3>
+        <p><span class="font-semibold pt-3">Description: </span>${cards.description}</p>
+        
+    `;
+    document.getElementById("tree_modal").showModal();
+}
 
 ///  Cart Load///
 cardContainer.addEventListener("click", (e) => {
     if(e.target.innerText === "Add to Cart"){
         handleCarts(e)
         const title = e.target.parentNode.children[1].innerText
+        
         alert(`${title} tree has been added to the Cart.` )
     }
-    if(e.target.innerText === `${title}`){
-        console.log(title);
-    }
-})
+});
+
 const handleCarts = (e) => {
     const title = e.target.parentNode.children[1].innerText
        const id = e.target.parentNode.children[1].id
@@ -140,30 +172,13 @@ const showCarts = (carts) => {
     }) 
 }
 
-/// Cart Delete Button ////
 
+/// Cart Delete Button ////
 const cartDeleteBtn = (cartID) => {
-   console.log(cartID);
    const filterCarts = carts.filter(cart => cart.id !== cartID)
    carts = filterCarts
    showCarts(carts)
 }
-
-/// Spinner///
-const showSpinner = () =>{
-    cardContainer.innerHTML += `
-        <div>
-            <span class="loading loading-bars loading-xs"></span>
-            <span class="loading loading-bars loading-sm"></span>
-            <span class="loading loading-bars loading-md"></span>
-            <span class="loading loading-bars loading-lg"></span>
-            <span class="loading loading-bars loading-xl"></span>
-        </div>
-    `;
-}
-
-  /// Modal ///
-
 
 
 loadCategory()
