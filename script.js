@@ -1,7 +1,6 @@
 
 const categoryContainer = document.getElementById("category-container");
 const cardContainer = document.getElementById("card-container");
-const cardContainer2 = document.getElementById("card-container2");
 const cartContainer = document.getElementById("cart-container")
 const plantTotalPrice = document.getElementById("total-price");
 const modalContainer = document.getElementById("modal-container");
@@ -38,7 +37,6 @@ const showCategory = (categories) =>{
             div.classList.remove('bg-green-500')
         })
         if(e.target.localName === "div"){
-            // showSpinner()
             e.target.classList.add("bg-green-500");
             loadCardByCategoriy(e.target.id)
             
@@ -146,13 +144,8 @@ const handleCarts = (e) => {
         title:title,
         price:price
        });
-       showCarts(carts)
        
-       //// Tree Price ///
-      const Totalprice = parseInt(plantTotalPrice.innerText);
-      const treePrice = parseInt(price)
-       let cartsPrice = Totalprice + treePrice;
-       const grandTotal = plantTotalPrice.innerText = cartsPrice;
+       showCarts(carts)
 
 }
 const showCarts = (carts) => {
@@ -162,7 +155,7 @@ const showCarts = (carts) => {
             <div class="bg-green-50 rounded-lg m-3 p-2 space-y-2">
                     <h3 class="">${cart.title}</h3>
                     <div class="flex justify-between items-center">
-                        <p class="text-gray-500 text-sm">৳<span id="plant-price">${cart.price}</span> x <span>1</span></p>
+                        <p class="text-gray-500 text-sm">৳<span id="plant-price" class="tree-price">${cart.price}</span> x <span>1</span></p>
                         <button onclick="cartDeleteBtn('${cart.id}')" class="text-red-700">X</button>
                     </div>
 
@@ -170,16 +163,30 @@ const showCarts = (carts) => {
         `;
 
     }) 
+    calculateTotal()
 }
+
+ //// Cart Price update///
+  function calculateTotal() {
+    let total = 0;
+    let prices = document.querySelectorAll(".tree-price");
+    prices.forEach(price => {
+      total += Number(price.innerText);
+    });
+
+    plantTotalPrice.innerText = total;
+  }
+calculateTotal()
 
 
 /// Cart Delete Button ////
 const cartDeleteBtn = (cartID) => {
    const filterCarts = carts.filter(cart => cart.id !== cartID)
-   carts = filterCarts
-   showCarts(carts)
+   carts = filterCarts;
+   showCarts(carts);
+   
+   
 }
-
 
 loadCategory()
 loadAllCards()
